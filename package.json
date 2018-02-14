@@ -1,5 +1,5 @@
 {
-  "name": "react_vr_meshplane",
+  "name": "react-vr-meshplane",
   "version": "0.0.1",
   "lib": "build/meshplane.js",
   "scripts": {
