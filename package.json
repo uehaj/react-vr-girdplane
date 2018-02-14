@@ -1,7 +1,6 @@
 {
   "name": "react_vr_meshplane",
   "version": "0.0.1",
-  "private": true,
   "lib": "build/meshplane.js",
   "scripts": {
     "start": "node -e \"console.log('open browser at http://localhost:8081/vr/\\n\\n');\" && node node_modules/react-native/local-cli/cli.js start",
