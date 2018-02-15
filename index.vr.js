@@ -1,12 +1,13 @@
 import React from 'react';
-import { AppRegistry, asset, Pano, Text, View } from 'react-vr';
-import MeshPlane from './src/components/MeshPlane';
+import { AppRegistry, asset, Pano, Text, View, Scene } from 'react-vr';
+import { MeshPlanes } from './src/components/MeshPlanes';
 
 export default class react_vr_meshplane extends React.Component {
   render() {
     return (
-      <View style={{ transform: [{ translate: [0, 3, -10] }] }}>
-        <MeshPlane w={10} />
+      <View>
+        <Scene style={{ transform: [{ translate: [15, 15, 15] }] }} />
+        <MeshPlanes ySize={10} xSize={10} zSize={10} />
       </View>
     );
   }
