@@ -1,7 +1,7 @@
 {
   "name": "react-vr-gridplane",
-  "version": "0.0.2",
-  "lib": "build/meshplanes.js",
+  "version": "0.1.0",
+  "lib": "build/grindplanes.js",
   "private": true,
   "scripts": {
     "start":

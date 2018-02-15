@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Plane, Text } from 'react-vr';
 
-export const MeshLine = props => {
+export const GridLine = props => {
   const { size, y, style } = props;
 
   return (
@@ -23,7 +23,7 @@ export const MeshLine = props => {
   );
 };
 
-const Txt = props => {
+const AxisText = props => {
   const { translate } = props;
   return (
     <Text
@@ -36,41 +36,43 @@ const Txt = props => {
   );
 };
 
-const MeshPlane = props => {
+const GridPlane = props => {
   const { mainSize, subSize, rotate, style } = props;
   return (
     <View style={{ transform: [...rotate] }}>
-      {/* mesh grid */}
+      {/* grid */}
       {[...Array(subSize * 2).keys()].map(y => (
-        <MeshLine y={y - subSize + 1} size={mainSize} key={y} style={style} />
+        <GridLine y={y - subSize + 1} size={mainSize} key={y} style={style} />
       ))}
     </View>
   );
 };
 
-export const Axis = props => {
+const Axis = props => {
   const { size, label, translate } = props;
   return (
     <View>
       {/* digits on axis */}
       {[...Array(size * 2 + 1).keys()].map(n => (
         <View key={n}>
-          <Txt translate={translate(n)}>{n - size}</Txt>
+          <AxisText translate={translate(n)}>{n - size}</AxisText>
         </View>
       ))}
       {/* axis label */}
-      {label && <Txt translate={translate(size * 2 + 1.5)}>{label}</Txt>}
+      {label && (
+        <AxisText translate={translate(size * 2 + 1.5)}>{label}</AxisText>
+      )}
     </View>
   );
 };
 
-export const MeshPlanes = props => {
+export const GridPlanes = props => {
   const { xSize, ySize, zSize } = props;
   return (
     <View>
       {xSize &&
         ySize && (
-          <MeshPlane
+          <GridPlane
             mainSize={xSize}
             subSize={ySize}
             rotate={[]}
@@ -79,7 +81,7 @@ export const MeshPlanes = props => {
         )}
       {ySize &&
         zSize && (
-          <MeshPlane
+          <GridPlane
             mainSize={zSize}
             subSize={ySize}
             rotate={[{ rotateY: 90 }]}
@@ -88,7 +90,7 @@ export const MeshPlanes = props => {
         )}
       {zSize &&
         xSize && (
-          <MeshPlane
+          <GridPlane
             mainSize={xSize}
             subSize={zSize}
             rotate={[{ rotateX: 90 }]}
@@ -137,4 +139,4 @@ const styles = {
   },
 };
 
-export default MeshPlanes;
+export default GridPlanes;
