@@ -1,8 +1,7 @@
 {
   "name": "react-vr-gridplane",
-  "version": "0.1.0",
-  "lib": "build/grindplanes.js",
-  "private": true,
+  "version": "0.2.1",
+  "lib": "build/components/GridPlanes.js",
   "scripts": {
     "start":
       "node -e \"console.log('open browser at http://localhost:8081/vr/\\n\\n');\" && node node_modules/react-native/local-cli/cli.js start",
