@@ -24,12 +24,12 @@ export const GridLine = props => {
 };
 
 const AxisText = props => {
-  const { translate } = props;
+  const { translate, style } = props;
   return (
     <Text
       style={{
         transform: [{ translate }],
-        ...styles.digit,
+        ...style,
       }}>
       {props.children}
     </Text>
@@ -49,25 +49,30 @@ const GridPlane = props => {
 };
 
 const Axis = props => {
-  const { size, label, translate } = props;
+  const { size, label, translate, style } = props;
   return (
     <View>
       {/* digits on axis */}
       {[...Array(size * 2 + 1).keys()].map(n => (
         <View key={n}>
-          <AxisText translate={translate(n)}>{n - size}</AxisText>
+          <AxisText translate={translate(n)} style={style}>
+            {n - size}
+          </AxisText>
         </View>
       ))}
       {/* axis label */}
       {label && (
-        <AxisText translate={translate(size * 2 + 1.5)}>{label}</AxisText>
+        <AxisText translate={translate(size * 2 + 1.5)} style={style}>
+          {label}
+        </AxisText>
       )}
     </View>
   );
 };
 
 export const GridPlanes = props => {
-  const { xSize, ySize, zSize } = props;
+  const { xSize, ySize, zSize, style = {} } = props;
+  const labelStyle = { ...styles.labels, ...style.labels };
   return (
     <View>
       {xSize &&
@@ -76,7 +81,7 @@ export const GridPlanes = props => {
             mainSize={xSize}
             subSize={ySize}
             rotate={[]}
-            style={styles.styleXY}
+            style={{ ...styles.planeXY, ...style.planeXY }}
           />
         )}
       {ySize &&
@@ -85,7 +90,7 @@ export const GridPlanes = props => {
             mainSize={zSize}
             subSize={ySize}
             rotate={[{ rotateY: 90 }]}
-            style={styles.styleYZ}
+            style={{ ...styles.planeYZ, ...style.planeYZ }}
           />
         )}
       {zSize &&
@@ -94,21 +99,23 @@ export const GridPlanes = props => {
             mainSize={xSize}
             subSize={zSize}
             rotate={[{ rotateX: 90 }]}
-            style={styles.styleZX}
+            style={{ ...styles.planeZX, ...style.planeZX }}
           />
         )}
       {xSize && (
         <Axis
           label={'X-Axis'}
           size={xSize}
-          translate={n => [n - 0.2 - xSize, 0.5, 0]}
+          translate={n => [n - labelStyle.fontSize / 2 - xSize, 0.5, 0]}
+          style={labelStyle}
         />
       )}
       {ySize && (
         <Axis
           label={'Y-Axis'}
           size={ySize}
-          translate={n => [0, n + 0.5 - ySize, 0]}
+          translate={n => [0, n + labelStyle.fontSize / 1.5 - ySize, 0]}
+          style={labelStyle}
         />
       )}
       {zSize && (
@@ -116,25 +123,38 @@ export const GridPlanes = props => {
           label={'Z-Axis'}
           size={zSize}
           translate={n => [0, 0, n - 0.2 - zSize]}
+          style={labelStyle}
         />
       )}
     </View>
   );
 };
 
+GridPlanes.propTypes = {
+  xSize: PropTypes.number,
+  ySize: PropTypes.number,
+  zSize: PropTypes.number,
+  style: PropTypes.shape({
+    labels: PropTypes.object,
+    planeXY: PropTypes.object,
+    planeYZ: PropTypes.object,
+    planeZX: PropTypes.object,
+  }),
+};
+
 const styles = {
-  digit: {
+  labels: {
     color: 'white',
     fontSize: 0.5,
     position: 'absolute',
   },
-  styleXY: {
+  planeXY: {
     color: 'red',
   },
-  styleYZ: {
+  planeYZ: {
     color: 'green',
   },
-  styleZX: {
+  planeZX: {
     color: 'blue',
   },
 };
