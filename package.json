@@ -1,10 +1,9 @@
 {
   "name": "react-vr-gridplane",
-  "version": "0.2.1",
-  "lib": "build/components/GridPlanes.js",
+  "version": "0.2.4",
+  "main": "build/components/GridPlanes.js",
   "scripts": {
-    "start":
-      "node -e \"console.log('open browser at http://localhost:8081/vr/\\n\\n');\" && node node_modules/react-native/local-cli/cli.js start",
+    "start": "node -e \"console.log('open browser at http://localhost:8081/vr/\\n\\n');\" && node node_modules/react-native/local-cli/cli.js start",
     "bundle": "node node_modules/react-vr/scripts/bundle.js",
     "open": "node -e \"require('xopen')('http://localhost:8081/vr/')\"",
     "devtools": "react-devtools",
@@ -12,15 +11,15 @@
     "prepare": "babel src --out-dir ./build/"
   },
   "dependencies": {
-    "ovrui": "~2.0.0",
     "prop-types": "^15.6.0",
-    "react": "16.0.0",
-    "react-native": "~0.48.0",
-    "react-vr": "~2.0.0",
-    "react-vr-web": "~2.0.0",
+    "react": "^16.0.0",
+    "react-vr": "^2.0.0",
+    "react-vr-web": "^2.0.0",
     "three": "^0.87.0"
   },
   "devDependencies": {
+    "react-native": "~0.48.0",
+    "ovrui": "~2.0.0",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "babel-core": "6.26.0",

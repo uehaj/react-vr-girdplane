@@ -71,7 +71,12 @@ const Axis = props => {
 };
 
 export const GridPlanes = props => {
-  const { xSize, ySize, zSize, style = {} } = props;
+  let { xSize, ySize, zSize, style = {} } = props;
+  if (!xSize && !ySize && !zSize) {
+    xSize = 10;
+    ySize = 10;
+    zSize = 10;
+  }
   const labelStyle = { ...styles.labels, ...style.labels };
   return (
     <View>
