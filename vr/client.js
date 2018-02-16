@@ -6,7 +6,7 @@
 import {VRInstance} from 'react-vr-web';
 
 function init(bundle, parent, options) {
-  const vr = new VRInstance(bundle, 'react_vr_meshplane', parent, {
+  const vr = new VRInstance(bundle, 'ReactVrGridPlane', parent, {
     // Add custom options here
     ...options,
   });
